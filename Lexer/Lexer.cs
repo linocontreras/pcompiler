@@ -46,10 +46,16 @@ namespace Lexer
             this.keywords.Add("to", new TokenTo());
             this.keywords.Add("downto", new TokenDownTo());
             this.keywords.Add("if", new TokenIf());
+            this.keywords.Add("not", new TokenNot());
             this.keywords.Add("then", new TokenThen());
             this.keywords.Add("else", new TokenElse());
             this.keywords.Add("writeln", new TokenWriteLn());
             this.keywords.Add("readln", new TokenReadLn());
+
+            this.keywords.Add("boolean", new TokenType(TokenTypeEnum.Boolean));
+            this.keywords.Add("integer", new TokenType(TokenTypeEnum.Integer));
+            this.keywords.Add("real", new TokenType(TokenTypeEnum.Real));
+            this.keywords.Add("string", new TokenType(TokenTypeEnum.String));
         }
 
         private void SetUpOneChar()
@@ -61,6 +67,8 @@ namespace Lexer
 
             this.oneChars.Add('(', new TokenLParen());
             this.oneChars.Add(')', new TokenRParen());
+
+            this.oneChars.Add('=', new TokenRelational(TokenRelationalEnum.EQ));
         }
 
         public Token GetNextToken()
@@ -80,14 +88,53 @@ namespace Lexer
                 return oneChar;
             }
 
+            if (this.peek == '<')
+            {
+                this.Read();
+
+                if (this.peek == '=')
+                {
+                    this.Read();
+
+                    return new TokenRelational(TokenRelationalEnum.LE);
+                }
+                else if (this.peek == '>')
+                {
+                    this.Read();
+
+                    return new TokenRelational(TokenRelationalEnum.NE);
+                }
+                else
+                {
+                    return new TokenRelational(TokenRelationalEnum.LT);
+                }
+            }
+
+            if (this.peek == '>')
+            {
+                this.Read();
+
+                if (this.peek == '=')
+                {
+                    this.Read();
+
+                    return new TokenRelational(TokenRelationalEnum.GE);
+                }
+                else
+                {
+                    return new TokenRelational(TokenRelationalEnum.GT);
+                }
+            }
+
             if ((char)this.peek == '\'')
             {
                 this.Read();
                 StringBuilder stringValue = new StringBuilder();
 
-                do {
+                do
+                {
                     stringValue.Append((char)this.Read());
-                } while((char)this.peek != '\'');
+                } while ((char)this.peek != '\'');
 
                 this.Read();
                 return new TokenString(stringValue.ToString());
@@ -104,6 +151,19 @@ namespace Lexer
 
                 this.keywords.TryGetValue(sb.ToString(), out Token keyword);
                 return keyword ?? new TokenIdentifier(sb.ToString());
+            }
+
+            if (char.IsDigit((char)this.peek) || this.peek == '-') {
+                int sign = 1;
+                if (this.peek == '-') sign *= -1;
+
+                int integer = 0;
+                do {
+                    integer *= 10;
+                    integer += int.Parse($"{this.Read()}") * sign;
+                } while(char.IsDigit((char)this.peek));
+
+                return new TokenInteger(integer);
             }
 
             return new TokenError($"({this.CurrentLine}, {this.CurrentCol}) unexpected: " + (char)this.Read());
