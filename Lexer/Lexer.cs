@@ -17,9 +17,13 @@ namespace Lexer
         public int CurrentLine { get; private set; } = 1;
 
         public int CurrentCol { get; private set; } = 1;
+
+        private int peek;
         public Lexer(TextReader textReader)
         {
             this.textReader = textReader;
+            this.peek = this.textReader.Peek();
+
             this.keywords = new Dictionary<string, Token>();
             this.oneChars = new Dictionary<char, Token>();
             this.SetUpKeywords();
@@ -50,6 +54,7 @@ namespace Lexer
 
         private void SetUpOneChar()
         {
+            this.oneChars.Add(':', new TokenColon());
             this.oneChars.Add(';', new TokenSemicolon());
             this.oneChars.Add('.', new TokenDot());
             this.oneChars.Add(',', new TokenComma());
@@ -62,12 +67,12 @@ namespace Lexer
         {
             this.ConsumeSpace();
 
-            if (this.Peek() == -1)
+            if (this.peek == -1)
             {
                 return new TokenEOF();
             }
 
-            this.oneChars.TryGetValue((char)this.Peek(), out Token oneChar);
+            this.oneChars.TryGetValue((char)this.peek, out Token oneChar);
 
             if (oneChar is Token)
             {
@@ -75,27 +80,27 @@ namespace Lexer
                 return oneChar;
             }
 
-            if ((char)this.Peek() == '\'')
+            if ((char)this.peek == '\'')
             {
                 this.Read();
                 StringBuilder stringValue = new StringBuilder();
 
                 do {
                     stringValue.Append((char)this.Read());
-                } while((char)this.Peek() != '\'');
+                } while((char)this.peek != '\'');
 
                 this.Read();
                 return new TokenString(stringValue.ToString());
             }
 
-            if (char.IsLetter((char)this.Peek()))
+            if (char.IsLetter((char)this.peek))
             {
                 StringBuilder sb = new StringBuilder();
 
                 do
                 {
                     sb.Append(char.ToLower((char)this.Read()));
-                } while (char.IsLetterOrDigit((char)this.Peek()) || (char)this.Peek() == '_');
+                } while (char.IsLetterOrDigit((char)this.peek) || (char)this.peek == '_');
 
                 this.keywords.TryGetValue(sb.ToString(), out Token keyword);
                 return keyword ?? new TokenIdentifier(sb.ToString());
@@ -104,22 +109,19 @@ namespace Lexer
             return new TokenError($"({this.CurrentLine}, {this.CurrentCol}) unexpected: " + (char)this.Read());
         }
 
-        private int Peek()
-        {
-            return this.textReader.Peek();
-        }
-
         private int Read()
         {
             this.CurrentCol++;
-            return this.textReader.Read();
+            int res = this.textReader.Read();
+            this.peek = this.textReader.Peek();
+            return res;
         }
 
         private void ConsumeSpace()
         {
             while (true)
             {
-                switch (this.Peek())
+                switch (this.peek)
                 {
                     case ' ':
                     case '\t':
