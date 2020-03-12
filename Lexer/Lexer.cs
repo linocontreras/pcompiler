@@ -5,7 +5,7 @@ using Lexer.Tokens;
 
 namespace Lexer
 {
-    class Lexer {
+    public class Lexer {
         private TextReader textReader;
 
         public int CurrentLine { get; private set; } = 1;
@@ -62,21 +62,5 @@ namespace Lexer
             }
         }
 
-    }
-
-    class Program
-    {
-        static void Main(string[] args)
-        {
-            Lexer lexer = new Lexer(Console.In);
-
-            Token token;
-
-            do {
-                token = lexer.GetNextToken();
-                Console.WriteLine(token);
-            } while (!(token is TokenEOF));
-
-        }
     }
 }
