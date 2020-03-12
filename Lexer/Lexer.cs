@@ -56,11 +56,12 @@ namespace Lexer
       this.keywords.Add("integer", new TokenType(TokenTypeEnum.Integer));
       this.keywords.Add("real", new TokenType(TokenTypeEnum.Real));
       this.keywords.Add("string", new TokenType(TokenTypeEnum.String));
+
+      this.keywords.Add("or", new TokenAddOperator(TokenAddOperatorEnum.Or));
     }
 
     private void SetUpOneChar()
     {
-      this.oneChars.Add(':', new TokenColon());
       this.oneChars.Add(';', new TokenSemicolon());
       this.oneChars.Add('.', new TokenDot());
       this.oneChars.Add(',', new TokenComma());
@@ -69,6 +70,9 @@ namespace Lexer
       this.oneChars.Add(')', new TokenRParen());
 
       this.oneChars.Add('=', new TokenRelational(TokenRelationalEnum.EQ));
+
+      this.oneChars.Add('+', new TokenAddOperator(TokenAddOperatorEnum.Plus));
+      this.oneChars.Add('-', new TokenAddOperator(TokenAddOperatorEnum.Minus));
     }
 
     public Token GetNextToken()
@@ -86,6 +90,17 @@ namespace Lexer
       {
         this.Read();
         return oneChar;
+      }
+
+      if (this.peek == ':') {
+        this.Read();
+
+        if (this.peek == '=') {
+          this.Read();
+          return new TokenAssign();
+        }
+
+        return new TokenColon();
       }
 
       if (this.peek == '<')
