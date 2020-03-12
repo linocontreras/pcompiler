@@ -31,6 +31,11 @@ namespace Lexer
                 return new TokenDot();
             }
 
+            if (this.Peek() == ',') {
+                this.Read();
+                return new TokenComma();
+            }
+
             if (this.Peek() == '(') {
                 this.Read();
                 return new TokenLParen();
