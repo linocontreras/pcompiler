@@ -147,7 +147,7 @@ namespace Lexer
                 do
                 {
                     sb.Append(char.ToLower((char)this.Read()));
-                } while (char.IsLetterOrDigit((char)this.peek) || (char)this.peek == '_');
+                } while (char.IsLetterOrDigit((char)this.peek));
 
                 this.keywords.TryGetValue(sb.ToString(), out Token keyword);
                 return keyword ?? new TokenIdentifier(sb.ToString());
@@ -163,10 +163,15 @@ namespace Lexer
                 int integer = 0;
                 do {
                     integer *= 10;
-                    integer += int.Parse($"{char.ToString((char)this.Read())}") * sign;
+                    integer += int.Parse($"{(char)this.Read()}") * sign;
                 } while(char.IsDigit((char)this.peek));
 
-                return new TokenInteger(integer);
+                if (this.peek != 'e' && this.peek != 'E' && this.peek != '.')
+                {
+                    return new TokenInteger(integer);
+                } else {
+                    
+                }
             }
 
             return new TokenError($"({this.CurrentLine}, {this.CurrentCol}) unexpected: " + (char)this.Read());
