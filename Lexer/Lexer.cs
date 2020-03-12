@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Text;
 using Lexer.Tokens;
@@ -11,6 +12,8 @@ namespace Lexer
 
         private Dictionary<string, Token> keywords;
 
+        private Dictionary<char, Token> oneChars;
+
         public int CurrentLine { get; private set; } = 1;
 
         public int CurrentCol { get; private set; } = 1;
@@ -18,13 +21,42 @@ namespace Lexer
         {
             this.textReader = textReader;
             this.keywords = new Dictionary<string, Token>();
+            this.oneChars = new Dictionary<char, Token>();
+            this.SetUpKeywords();
+            this.SetUpOneChar();
         }
 
         private void SetUpKeywords()
         {
             this.keywords.Add("program", new TokenProgram());
+            this.keywords.Add("constant", new TokenConstant());
+            this.keywords.Add("var", new TokenVar());
             this.keywords.Add("begin", new TokenBegin());
             this.keywords.Add("end", new TokenEnd());
+            this.keywords.Add("function", new TokenFunction());
+            this.keywords.Add("while", new TokenWhile());
+            this.keywords.Add("do", new TokenDo());
+            this.keywords.Add("repeat", new TokenRepeat());
+            this.keywords.Add("until", new TokenUntil());
+            this.keywords.Add("for", new TokenFor());
+            this.keywords.Add("to", new TokenTo());
+            this.keywords.Add("downto", new TokenDownTo());
+            this.keywords.Add("if", new TokenIf());
+            this.keywords.Add("then", new TokenThen());
+            this.keywords.Add("else", new TokenElse());
+            this.keywords.Add("writeln", new TokenWriteLn());
+            this.keywords.Add("readln", new TokenReadLn());
+        }
+
+        private void SetUpOneChar()
+        {
+            this.oneChars.Add(';', new TokenSemicolon());
+            this.oneChars.Add('.', new TokenDot());
+            this.oneChars.Add(',', new TokenComma());
+            this.oneChars.Add('\'', new TokenQuote());
+
+            this.oneChars.Add('(', new TokenLParen());
+            this.oneChars.Add(')', new TokenRParen());
         }
 
         public Token GetNextToken()
@@ -36,34 +68,12 @@ namespace Lexer
                 return new TokenEOF();
             }
 
-            if (this.Peek() == ';')
-            {
-                this.Read();
-                return new TokenSemicolon();
-            }
+            this.oneChars.TryGetValue((char)this.Peek(), out Token oneChar);
 
-            if (this.Peek() == '.')
+            if (oneChar is Token)
             {
                 this.Read();
-                return new TokenDot();
-            }
-
-            if (this.Peek() == ',')
-            {
-                this.Read();
-                return new TokenComma();
-            }
-
-            if (this.Peek() == '(')
-            {
-                this.Read();
-                return new TokenLParen();
-            }
-
-            if (this.Peek() == ')')
-            {
-                this.Read();
-                return new TokenRParen();
+                return oneChar;
             }
 
             if (char.IsLetter((char)this.Peek()))
@@ -72,8 +82,8 @@ namespace Lexer
 
                 do
                 {
-                    sb.Append((char)this.Read());
-                } while (char.IsLetter((char)this.Peek()));
+                    sb.Append(char.ToLower((char)this.Read()));
+                } while (char.IsLetterOrDigit((char)this.Peek()) || (char)this.Peek() == '_');
 
                 this.keywords.TryGetValue(sb.ToString(), out Token keyword);
                 return keyword ?? new TokenIdentifier(sb.ToString());
