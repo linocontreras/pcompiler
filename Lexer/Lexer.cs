@@ -53,7 +53,6 @@ namespace Lexer
             this.oneChars.Add(';', new TokenSemicolon());
             this.oneChars.Add('.', new TokenDot());
             this.oneChars.Add(',', new TokenComma());
-            this.oneChars.Add('\'', new TokenQuote());
 
             this.oneChars.Add('(', new TokenLParen());
             this.oneChars.Add(')', new TokenRParen());
@@ -74,6 +73,19 @@ namespace Lexer
             {
                 this.Read();
                 return oneChar;
+            }
+
+            if ((char)this.Peek() == '\'')
+            {
+                this.Read();
+                StringBuilder stringValue = new StringBuilder();
+
+                do {
+                    stringValue.Append((char)this.Read());
+                } while((char)this.Peek() != '\'');
+
+                this.Read();
+                return new TokenString(stringValue.ToString());
             }
 
             if (char.IsLetter((char)this.Peek()))
