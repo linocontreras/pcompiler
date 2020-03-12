@@ -8,7 +8,7 @@ This project was built using the following tools
 
 ## Building
 Inside the root folder run the next commands.
-```sh
+```bash
 # Restore the dependencies and tools for the projects
 dotnet restore
 # Build the solution
