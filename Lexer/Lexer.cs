@@ -1,5 +1,4 @@
-﻿using System;
-using System.IO;
+﻿using System.IO;
 using System.Text;
 using Lexer.Tokens;
 
@@ -18,8 +17,28 @@ namespace Lexer
         public Token GetNextToken() {
             this.ConsumeSpace();
 
-            if (this.textReader.Peek() == -1) {
+            if (this.Peek() == -1) {
                 return new TokenEOF();
+            }
+
+            if (this.Peek() == ';') {
+                this.Read();
+                return new TokenSemicolon();
+            }
+
+            if (this.Peek() == '.') {
+                this.Read();
+                return new TokenDot();
+            }
+
+            if (this.Peek() == '(') {
+                this.Read();
+                return new TokenLParen();
+            }
+
+            if (this.Peek() == ')') {
+                this.Read();
+                return new TokenRParen();
             }
 
             if (char.IsLetter((char)this.Peek())) {
