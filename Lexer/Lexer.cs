@@ -58,6 +58,10 @@ namespace Lexer
       this.keywords.Add("string", new TokenType(TokenTypeEnum.String));
 
       this.keywords.Add("or", new TokenAddOperator(TokenAddOperatorEnum.Or));
+
+      this.keywords.Add("div", new TokenMultOperator(TokenMultOperatorEnum.Div));
+      this.keywords.Add("mod", new TokenMultOperator(TokenMultOperatorEnum.Mod));
+      this.keywords.Add("and", new TokenMultOperator(TokenMultOperatorEnum.And));
     }
 
     private void SetUpOneChar()
@@ -73,6 +77,9 @@ namespace Lexer
 
       this.oneChars.Add('+', new TokenAddOperator(TokenAddOperatorEnum.Plus));
       this.oneChars.Add('-', new TokenAddOperator(TokenAddOperatorEnum.Minus));
+
+      this.oneChars.Add('*', new TokenMultOperator(TokenMultOperatorEnum.Star));
+      this.oneChars.Add('/', new TokenMultOperator(TokenMultOperatorEnum.Slash));
     }
 
     public Token GetNextToken()
