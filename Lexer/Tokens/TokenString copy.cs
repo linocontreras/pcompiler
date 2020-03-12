@@ -9,7 +9,7 @@ namespace Lexer.Tokens {
 
         public override string ToString()
         {
-            return $"[{nameof(TokenInteger)}] '{this.Value}'";
+            return $"[{nameof(TokenInteger)}] {this.Value}";
         }
     }
 }

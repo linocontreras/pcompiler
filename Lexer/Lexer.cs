@@ -155,12 +155,15 @@ namespace Lexer
 
             if (char.IsDigit((char)this.peek) || this.peek == '-') {
                 int sign = 1;
-                if (this.peek == '-') sign *= -1;
+                if (this.peek == '-') {
+                    this.Read();
+                  sign *= -1;
+                }
 
                 int integer = 0;
                 do {
                     integer *= 10;
-                    integer += int.Parse($"{this.Read()}") * sign;
+                    integer += int.Parse($"{char.ToString((char)this.Read())}") * sign;
                 } while(char.IsDigit((char)this.peek));
 
                 return new TokenInteger(integer);
