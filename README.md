@@ -21,3 +21,8 @@ dotnet run --project PascalCompiler /Path/To/SourceCode.pas
 You can find the outputs of the examples inside the folder named **Output**.
 
 The **Lexer** folder inside contains the outputs from the Lexer to the provided examples.
+
+## Example errors
+The token procedure is not defined on the grammar. It was implemented because it seemed like a typo.
+
+Also, the grammar requires identifiers to be alphanumeric only. But on Example8 an identifier includes a _

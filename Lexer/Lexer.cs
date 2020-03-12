@@ -62,6 +62,8 @@ namespace Lexer
       this.keywords.Add("div", new TokenMultOperator(TokenMultOperatorEnum.Div));
       this.keywords.Add("mod", new TokenMultOperator(TokenMultOperatorEnum.Mod));
       this.keywords.Add("and", new TokenMultOperator(TokenMultOperatorEnum.And));
+
+      this.keywords.Add("procedure", new TokenProcedure());
     }
 
     private void SetUpOneChar()
