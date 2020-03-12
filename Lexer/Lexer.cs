@@ -171,7 +171,6 @@ namespace Lexer
         
         if (this.peek != 'e' && this.peek != 'E' && this.peek != '.')
         {
-          Console.WriteLine("peek != e " + ((char)this.peek != 'e'));
           return new TokenInteger(integer);
         }
         else
