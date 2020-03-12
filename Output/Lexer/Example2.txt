@@ -1,0 +1,49 @@
+[TokenProgram]
+[TokenIdentifier] example2
+[TokenSemicolon]
+[TokenVar]
+[TokenIdentifier] num1
+[TokenComma]
+[TokenIdentifier] num2
+[TokenComma]
+[TokenIdentifier] sum
+[TokenColon]
+[TokenType] Integer
+[TokenSemicolon]
+[TokenBegin]
+[TokenWriteLn]
+[TokenLParen]
+[TokenString] 'Input number 1:'
+[TokenRParen]
+[TokenSemicolon]
+[TokenReadLn]
+[TokenLParen]
+[TokenIdentifier] num1
+[TokenRParen]
+[TokenSemicolon]
+[TokenWriteLn]
+[TokenLParen]
+[TokenString] 'Input number 2:'
+[TokenRParen]
+[TokenSemicolon]
+[TokenReadLn]
+[TokenLParen]
+[TokenIdentifier] num2
+[TokenRParen]
+[TokenSemicolon]
+[TokenIdentifier] sum
+[TokenAssign]
+[TokenIdentifier] num1
+[TokenAddOperator] Plus
+[TokenIdentifier] num2
+[TokenSemicolon]
+[TokenWriteLn]
+[TokenLParen]
+[TokenIdentifier] sum
+[TokenRParen]
+[TokenSemicolon]
+[TokenReadLn]
+[TokenSemicolon]
+[TokenEnd]
+[TokenDot]
+[TokenEOF]

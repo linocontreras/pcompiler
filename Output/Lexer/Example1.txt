@@ -1,0 +1,14 @@
+[TokenProgram]
+[TokenIdentifier] example1
+[TokenSemicolon]
+[TokenBegin]
+[TokenWriteLn]
+[TokenLParen]
+[TokenString] 'Hello World. Prepare to learn PASCAL!!'
+[TokenRParen]
+[TokenSemicolon]
+[TokenReadLn]
+[TokenSemicolon]
+[TokenEnd]
+[TokenDot]
+[TokenEOF]

@@ -1,0 +1,138 @@
+[TokenProgram]
+[TokenIdentifier] lesson7
+[TokenError] (1, 16) unexpected: _
+[TokenIdentifier] program4
+[TokenSemicolon]
+[TokenVar]
+[TokenIdentifier] sizea
+[TokenComma]
+[TokenIdentifier] sizeb
+[TokenColon]
+[TokenType] Real
+[TokenSemicolon]
+[TokenIdentifier] yn
+[TokenColon]
+[TokenType] String
+[TokenSemicolon]
+[TokenIdentifier] units
+[TokenColon]
+[TokenType] String
+[TokenSemicolon]
+[TokenFunction]
+[TokenIdentifier] pythagorasfunc
+[TokenLParen]
+[TokenIdentifier] a
+[TokenColon]
+[TokenType] Real
+[TokenSemicolon]
+[TokenIdentifier] b
+[TokenColon]
+[TokenType] Real
+[TokenRParen]
+[TokenColon]
+[TokenType] Real
+[TokenSemicolon]
+[TokenBegin]
+[TokenIdentifier] pythagorasfunc
+[TokenAssign]
+[TokenIdentifier] sqrt
+[TokenLParen]
+[TokenIdentifier] a
+[TokenMultOperator] Star
+[TokenIdentifier] a
+[TokenAddOperator] Plus
+[TokenIdentifier] b
+[TokenMultOperator] Star
+[TokenIdentifier] b
+[TokenRParen]
+[TokenSemicolon]
+[TokenEnd]
+[TokenSemicolon]
+[TokenBegin]
+[TokenRepeat]
+[TokenWriteLn]
+[TokenLParen]
+[TokenString] 'Enter the size of side A : '
+[TokenRParen]
+[TokenSemicolon]
+[TokenReadLn]
+[TokenLParen]
+[TokenIdentifier] sizea
+[TokenRParen]
+[TokenSemicolon]
+[TokenWriteLn]
+[TokenLParen]
+[TokenString] 'Enter the size of side B : '
+[TokenRParen]
+[TokenSemicolon]
+[TokenReadLn]
+[TokenLParen]
+[TokenIdentifier] sizeb
+[TokenRParen]
+[TokenSemicolon]
+[TokenRepeat]
+[TokenWriteLn]
+[TokenLParen]
+[TokenString] 'metres or centimetres? Enter : [m or cm] '
+[TokenRParen]
+[TokenSemicolon]
+[TokenReadLn]
+[TokenLParen]
+[TokenIdentifier] units
+[TokenRParen]
+[TokenSemicolon]
+[TokenUntil]
+[TokenLParen]
+[TokenIdentifier] units
+[TokenRelational] EQ
+[TokenString] 'm'
+[TokenRParen]
+[TokenAddOperator] Or
+[TokenLParen]
+[TokenIdentifier] units
+[TokenRelational] EQ
+[TokenString] 'cm'
+[TokenRParen]
+[TokenSemicolon]
+[TokenWriteLn]
+[TokenLParen]
+[TokenIdentifier] pythagorasfunc
+[TokenLParen]
+[TokenIdentifier] sizea
+[TokenComma]
+[TokenIdentifier] sizeb
+[TokenRParen]
+[TokenComma]
+[TokenString] ' '
+[TokenComma]
+[TokenIdentifier] units
+[TokenRParen]
+[TokenSemicolon]
+[TokenWriteLn]
+[TokenSemicolon]
+[TokenWriteLn]
+[TokenLParen]
+[TokenString] 'Repeat? '
+[TokenRParen]
+[TokenSemicolon]
+[TokenReadLn]
+[TokenLParen]
+[TokenIdentifier] yn
+[TokenRParen]
+[TokenSemicolon]
+[TokenUntil]
+[TokenLParen]
+[TokenIdentifier] yn
+[TokenRelational] EQ
+[TokenString] 'N'
+[TokenRParen]
+[TokenAddOperator] Or
+[TokenLParen]
+[TokenIdentifier] yn
+[TokenRelational] EQ
+[TokenString] 'n'
+[TokenRParen]
+[TokenSemicolon]
+[TokenEnd]
+[TokenDot]
+[TokenEOF]

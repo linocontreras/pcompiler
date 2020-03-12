@@ -1,0 +1,44 @@
+[TokenProgram]
+[TokenIdentifier] example4
+[TokenSemicolon]
+[TokenVar]
+[TokenIdentifier] surname
+[TokenColon]
+[TokenType] String
+[TokenSemicolon]
+[TokenIdentifier] const
+[TokenIdentifier] name
+[TokenRelational] EQ
+[TokenString] 'Victor'
+[TokenSemicolon]
+[TokenBegin]
+[TokenWriteLn]
+[TokenLParen]
+[TokenString] 'Enter your surname:'
+[TokenRParen]
+[TokenSemicolon]
+[TokenReadLn]
+[TokenLParen]
+[TokenIdentifier] surname
+[TokenRParen]
+[TokenSemicolon]
+[TokenWriteLn]
+[TokenSemicolon]
+[TokenWriteLn]
+[TokenSemicolon]
+[TokenWriteLn]
+[TokenLParen]
+[TokenString] 'Your full name is: '
+[TokenComma]
+[TokenIdentifier] name
+[TokenComma]
+[TokenString] ' '
+[TokenComma]
+[TokenIdentifier] surname
+[TokenRParen]
+[TokenSemicolon]
+[TokenReadLn]
+[TokenSemicolon]
+[TokenEnd]
+[TokenDot]
+[TokenEOF]

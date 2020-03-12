@@ -1,0 +1,60 @@
+[TokenProgram]
+[TokenIdentifier] exampl5
+[TokenSemicolon]
+[TokenVar]
+[TokenIdentifier] age
+[TokenColon]
+[TokenType] Integer
+[TokenSemicolon]
+[TokenBegin]
+[TokenRepeat]
+[TokenWriteLn]
+[TokenLParen]
+[TokenString] 'Enter age (1 - 100): '
+[TokenRParen]
+[TokenSemicolon]
+[TokenReadLn]
+[TokenLParen]
+[TokenIdentifier] age
+[TokenRParen]
+[TokenSemicolon]
+[TokenIf]
+[TokenLParen]
+[TokenIdentifier] age
+[TokenRelational] LT
+[TokenInteger] 1
+[TokenRParen]
+[TokenThen]
+[TokenWriteLn]
+[TokenLParen]
+[TokenString] 'Age cannot be less than 1...'
+[TokenRParen]
+[TokenElse]
+[TokenIf]
+[TokenLParen]
+[TokenIdentifier] age
+[TokenRelational] GT
+[TokenInteger] 100
+[TokenRParen]
+[TokenThen]
+[TokenWriteLn]
+[TokenLParen]
+[TokenString] 'Age cannot be greater than 100...'
+[TokenRParen]
+[TokenSemicolon]
+[TokenUntil]
+[TokenLParen]
+[TokenIdentifier] age
+[TokenRelational] GT
+[TokenInteger] 0
+[TokenRParen]
+[TokenMultOperator] And
+[TokenLParen]
+[TokenIdentifier] age
+[TokenRelational] LE
+[TokenInteger] 100
+[TokenRParen]
+[TokenSemicolon]
+[TokenEnd]
+[TokenDot]
+[TokenEOF]

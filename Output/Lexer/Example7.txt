@@ -1,0 +1,51 @@
+[TokenProgram]
+[TokenIdentifier] example7
+[TokenSemicolon]
+[TokenVar]
+[TokenIdentifier] res
+[TokenColon]
+[TokenType] Integer
+[TokenSemicolon]
+[TokenProcedure]
+[TokenIdentifier] square
+[TokenLParen]
+[TokenIdentifier] index
+[TokenColon]
+[TokenType] Integer
+[TokenSemicolon]
+[TokenVar]
+[TokenIdentifier] result
+[TokenColon]
+[TokenType] Integer
+[TokenRParen]
+[TokenSemicolon]
+[TokenBegin]
+[TokenIdentifier] result
+[TokenAssign]
+[TokenIdentifier] index
+[TokenMultOperator] Star
+[TokenIdentifier] index
+[TokenSemicolon]
+[TokenEnd]
+[TokenSemicolon]
+[TokenBegin]
+[TokenWriteLn]
+[TokenLParen]
+[TokenString] 'The square of 5 is: '
+[TokenRParen]
+[TokenSemicolon]
+[TokenIdentifier] square
+[TokenLParen]
+[TokenInteger] 5
+[TokenComma]
+[TokenIdentifier] res
+[TokenRParen]
+[TokenSemicolon]
+[TokenWriteLn]
+[TokenLParen]
+[TokenIdentifier] res
+[TokenRParen]
+[TokenSemicolon]
+[TokenEnd]
+[TokenDot]
+[TokenEOF]

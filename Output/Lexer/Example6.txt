@@ -1,0 +1,68 @@
+[TokenProgram]
+[TokenIdentifier] example6
+[TokenSemicolon]
+[TokenVar]
+[TokenIdentifier] bool
+[TokenColon]
+[TokenType] Boolean
+[TokenSemicolon]
+[TokenIdentifier] a
+[TokenComma]
+[TokenIdentifier] b
+[TokenColon]
+[TokenType] Integer
+[TokenSemicolon]
+[TokenBegin]
+[TokenIdentifier] a
+[TokenAssign]
+[TokenInteger] 10
+[TokenSemicolon]
+[TokenIdentifier] b
+[TokenAssign]
+[TokenInteger] 20
+[TokenSemicolon]
+[TokenIdentifier] bool
+[TokenAssign]
+[TokenIdentifier] false
+[TokenSemicolon]
+[TokenIdentifier] bool
+[TokenAssign]
+[TokenLParen]
+[TokenIdentifier] a
+[TokenRelational] EQ
+[TokenInteger] 10
+[TokenRParen]
+[TokenAddOperator] Or
+[TokenLParen]
+[TokenIdentifier] b
+[TokenRelational] EQ
+[TokenInteger] 10
+[TokenRParen]
+[TokenSemicolon]
+[TokenWriteLn]
+[TokenLParen]
+[TokenIdentifier] bool
+[TokenRParen]
+[TokenSemicolon]
+[TokenIdentifier] bool
+[TokenAssign]
+[TokenLParen]
+[TokenIdentifier] a
+[TokenRelational] EQ
+[TokenInteger] 10
+[TokenRParen]
+[TokenMultOperator] And
+[TokenLParen]
+[TokenIdentifier] b
+[TokenRelational] EQ
+[TokenInteger] 10
+[TokenRParen]
+[TokenSemicolon]
+[TokenWriteLn]
+[TokenLParen]
+[TokenIdentifier] bool
+[TokenRParen]
+[TokenSemicolon]
+[TokenEnd]
+[TokenDot]
+[TokenEOF]
