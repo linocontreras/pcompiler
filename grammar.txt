@@ -23,6 +23,10 @@ variable-declaration -> identifier-list : type
 
 procedure-and-function-declaration-part -> ''
 procedure-and-function-declaration-part -> procedure-function more-procedure-and-function-declaration-part
+
+more-procedure-and-function-declaration-part -> ''
+more-procedure-and-function-declaration-part -> procedure-function more-procedure-and-function-declaration-part
+
 procedure-function -> procedure-declaration ;
 procedure-function -> function-declaration ;
 
