@@ -53,8 +53,6 @@ variable-parameter-section -> var identifier-list : type
 statement-part -> begin statement-sequence end .
 
 type -> integer
-actual-parameter -> 
-actual-parameter -> 
 type -> real
 type -> boolean
 type -> string
@@ -99,9 +97,59 @@ more-element -> , element more-element
 
 element -> number
 element -> string
-element -> constant
+element -> constant'
 element -> identifier
 
 readln-statement -> readln opt-identifier-list
 opt-identifier-list -> ''
 opt-identifier-list -> ( identifier-list )
+
+structured-statement -> compound-statement
+structured-statement -> repetitive-statement
+structured-statement -> conditional-statement
+
+compound-statement -> begin statement-sequence end .
+
+repetitive-statement -> while-statement
+repetitive-statement -> repeat-stateexpressionment
+repetitive-statement -> for-statement
+
+while-statement -> while expression do statement
+repeat-statement -> repeat statement-sequence until expression
+
+for-statement -> for identifier := expression to-downto expression do statement
+to-downto -> to
+to-downto -> downto
+
+conditional-statement -> if expression then statement opt-else
+opt-else -> ''
+opt-else -> else statement
+
+constant' -> opt-sign id-number
+constant' -> string
+
+id-number -> identifier
+id-number -> number
+
+opt-sign -> ''
+opt-sign -> +
+opt-sign -> -
+
+expression -> simple-expression opt-rel-expression
+opt-rel-expression -> ''
+opt-rel-expression -> relational-operator simple-expression
+
+simple-expression -> opt-sign term more-add-term
+more-add-term -> ''
+more-add-term -> addition-operator term more-add-term
+
+term -> factor more-mult-term
+more-mult-term -> ''
+more-mult-term -> multiplication-operator factor more-mult-term
+
+factor -> identifier
+factor -> number
+factor -> string
+factor -> constant'
+factor -> ( expression )
+factor -> not factor
