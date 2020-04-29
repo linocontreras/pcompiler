@@ -153,3 +153,20 @@ factor -> string
 factor -> constant'
 factor -> ( expression )
 factor -> not factor
+
+relational-operator -> =
+relational-operator -> <>
+relational-operator -> <
+relational-operator -> <=
+relational-operator -> >
+relational-operator -> >=
+
+addition-operator -> +
+addition-operator -> -
+addition-operator -> or
+
+multiplication-operator -> *
+multiplication-operator -> /
+multiplication-operator -> div
+multiplication-operator -> mod
+multiplication-operator -> and
