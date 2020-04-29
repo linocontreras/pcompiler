@@ -49,13 +49,55 @@ variable-parameter-section -> var identifier-list : type
 statement-part -> begin statement-sequence end .
 
 type -> integer
+actual-parameter -> 
+actual-parameter -> 
 type -> real
 type -> boolean
 type -> string
 
-identifier-list -> identifier
-identifier-list -> identifier , identifier
-statement-sequence -> statement more-statements
-more-statements -> ''
-more-statements -> ; statement
+identifier-list -> identifier more-identifier
+more-identifier -> ''
+more-identifier -> , identifier more-identifier
 
+statement-sequence -> statement more-statement
+more-statement -> ''
+more-statement -> ; statement more-statement
+
+statement -> simple-statement
+statement -> structured-statement
+
+simple-statement -> ''
+simple-statement -> assignment-statement
+simple-statement -> procedure-statement
+simple-statement -> IO-statement
+
+assignment-statement -> identifier := expression
+procedure-statement -> identifier opt-actual-parameter-list
+
+opt-actual-parameter-list -> ( actual-parameter more-actual-parameter )
+more-actual-parameter -> ''
+more-actual-parameter -> , actual-parameter
+
+actual-parameter -> expression
+actual-parameter -> identifier
+
+IO-statement -> writeln-statement
+IO-statement -> readln-statement
+
+writeln-statement -> writeln ( opt-element-list )
+
+opt-element-list -> ''
+opt-element-list -> element-list
+
+element-list -> element more-element
+more-element -> ''
+more-element -> , element more-element
+
+element -> number
+element -> string
+element -> constant
+element -> identifier
+
+readln-statement -> readln opt-identifier-list
+opt-identifier-list -> ''
+opt-identifier-list -> ( identifier-list )
