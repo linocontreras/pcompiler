@@ -1,0 +1,22 @@
+programa -> program-heading ; program-block
+program-heading -> program identifier 
+program-heading -> program identifier ( program-parameters )
+program-parameters -> identifier-list
+program-block -> statement-part
+statement-part -> begin statement-sequence end .
+
+body -> statement-part
+body -> constant-declaration-part statement-part
+body -> variable-declaration-part statement-part
+body -> procedure-and-function-declaration-part statement-part
+body -> constant-declaration-part variable-declaration-part statement-part
+body -> constant-declaration-part procedure-and-function-declaration-part statement-part
+body -> variable-declaration-part procedure-and-function-declaration-part statement-part
+body -> constant-declaration-part variable-declaration-part procedure-and-function-declaration-part statement-part
+
+constant-declaration-part -> constant constant-definition ; 
+
+
+
+identifier-list -> identifier
+identifier-list -> identifier , identifier

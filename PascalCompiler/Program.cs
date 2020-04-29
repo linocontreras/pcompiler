@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Text;
 using System.IO;
-using Lexer;
-using Lexer.Tokens;
+using Lexing;
+using Lexing.Tokens;
 
 namespace PascalCompiler
 {
@@ -17,7 +17,7 @@ namespace PascalCompiler
                 textReader = new StreamReader(File.OpenRead(args[0]));
             }
 
-            Lexer.Lexer lexer = new Lexer.Lexer(textReader);
+            Lexer lexer = new Lexer(textReader);
 
             Token token;
 
