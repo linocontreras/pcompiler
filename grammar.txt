@@ -1,22 +1,38 @@
 programa -> program-heading ; program-block
-program-heading -> program identifier 
-program-heading -> program identifier ( program-parameters )
-program-parameters -> identifier-list
-program-block -> statement-part
-statement-part -> begin statement-sequence end .
 
-body -> statement-part
-body -> constant-declaration-part statement-part
-body -> variable-declaration-part statement-part
-body -> procedure-and-function-declaration-part statement-part
-body -> constant-declaration-part variable-declaration-part statement-part
-body -> constant-declaration-part procedure-and-function-declaration-part statement-part
-body -> variable-declaration-part procedure-and-function-declaration-part statement-part
+program-heading -> program identifier opt-program-parameters
+opt-program-parameters -> ''
+opt-program-parameters -> ( program-parameters )
+
+program-parameters -> identifier-list
+
+program-block -> body
+
 body -> constant-declaration-part variable-declaration-part procedure-and-function-declaration-part statement-part
 
-constant-declaration-part -> constant constant-definition ; 
+constant-declaration-part -> ''
+constant-declaration-part -> constant constant-definition ; more-constant-definition
+more-constant-definition -> ''
+more-constant-definition -> constant-definition ; more-constant-definition
 
+variable-declaration-part -> ''
+variable-declaration-part -> var variable-declaration ; more-variable-declaration
+more-variable-declaration -> ''
+more-variable-declaration -> variable-declaration ; more-variable-declaration
+variable-declaration -> identifier-list : type
 
+procedure-and-function-declaration-part -> ''
+procedure-and-function-declaration-part -> 
+
+statement-part -> begin statement-sequence end .
+
+type -> integer
+type -> real
+type -> boolean
+type -> string
 
 identifier-list -> identifier
 identifier-list -> identifier , identifier
+statement-sequence -> statement more-statements
+more-statements -> ''
+more-statements -> ; statement
