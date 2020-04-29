@@ -35,7 +35,15 @@ opt-formal-parameter-list -> ( formal-parameter-section more-formal-parameter-se
 more-formal-parameter-section -> ''
 more-formal-parameter-section -> ; formal-parameter-section more-formal-parameter-section
 
+formal-parameter-section -> value-parameter-section
+formal-parameter-section -> variable-parameter-section
 
+function-declaration -> function-heading ; function-body
+function-heading -> function identifier opt-formal-parameter-list : type
+function-body -> body
+
+value-parameter-section -> identifier-list : type
+variable-parameter-section -> var identifier-list : type
 
 
 statement-part -> begin statement-sequence end .
@@ -50,3 +58,4 @@ identifier-list -> identifier , identifier
 statement-sequence -> statement more-statements
 more-statements -> ''
 more-statements -> ; statement
+
