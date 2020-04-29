@@ -22,7 +22,21 @@ more-variable-declaration -> variable-declaration ; more-variable-declaration
 variable-declaration -> identifier-list : type
 
 procedure-and-function-declaration-part -> ''
-procedure-and-function-declaration-part -> 
+procedure-and-function-declaration-part -> procedure-function more-procedure-and-function-declaration-part
+procedure-function -> procedure-declaration ;
+procedure-function -> function-declaration ;
+
+procedure-declaration -> procedure-heading ; procedure-body
+procedure-heading -> procedure identifier opt-formal-parameter-list
+procedure-body -> body
+
+opt-formal-parameter-list -> ''
+opt-formal-parameter-list -> ( formal-parameter-section more-formal-parameter-section ) )
+more-formal-parameter-section -> ''
+more-formal-parameter-section -> ; formal-parameter-section more-formal-parameter-section
+
+
+
 
 statement-part -> begin statement-sequence end .
 
