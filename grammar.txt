@@ -1,170 +1,90 @@
-programa -> program-heading ; program-block
-
+programa -> program-heading ; program-block .
 program-heading -> program identifier opt-program-parameters
-opt-program-parameters -> ''
 opt-program-parameters -> ( program-parameters )
-
+opt-program-parameters -> ''
 program-parameters -> identifier-list
-
-program-block -> body
-
-body -> constant-declaration-part variable-declaration-part procedure-and-function-declaration-part statement-part
-
-constant-declaration-part -> ''
+program-block -> constant-declaration-part variable-declaration-part statement-part
 constant-declaration-part -> constant constant-definition ; more-constant-definition
-more-constant-definition -> ''
+constant-declaration-part -> ''
 more-constant-definition -> constant-definition ; more-constant-definition
-
-variable-declaration-part -> ''
+more-constant-definition -> ''
 variable-declaration-part -> var variable-declaration ; more-variable-declaration
-more-variable-declaration -> ''
+variable-declaration-part -> ''
 more-variable-declaration -> variable-declaration ; more-variable-declaration
+more-variable-declaration -> ''
 variable-declaration -> identifier-list : type
-
-procedure-and-function-declaration-part -> ''
-procedure-and-function-declaration-part -> procedure-function more-procedure-and-function-declaration-part
-
-more-procedure-and-function-declaration-part -> ''
-more-procedure-and-function-declaration-part -> procedure-function more-procedure-and-function-declaration-part
-
-procedure-function -> procedure-declaration ;
-procedure-function -> function-declaration ;
-
-procedure-declaration -> procedure-heading ; procedure-body
-procedure-heading -> procedure identifier opt-formal-parameter-list
-procedure-body -> body
-
-opt-formal-parameter-list -> ''
-opt-formal-parameter-list -> ( formal-parameter-section more-formal-parameter-section ) )
-more-formal-parameter-section -> ''
-more-formal-parameter-section -> ; formal-parameter-section more-formal-parameter-section
-
-formal-parameter-section -> value-parameter-section
-formal-parameter-section -> variable-parameter-section
-
-function-declaration -> function-heading ; function-body
-function-heading -> function identifier opt-formal-parameter-list : type
-function-body -> body
-
-value-parameter-section -> identifier-list : type
-variable-parameter-section -> var identifier-list : type
-
-
 statement-part -> begin statement-sequence end .
-
 type -> integer
 type -> real
 type -> boolean
 type -> string
-
 identifier-list -> identifier more-identifier
-more-identifier -> ''
 more-identifier -> , identifier more-identifier
-
+more-identifier -> ''
 statement-sequence -> statement more-statement
-more-statement -> ''
 more-statement -> ; statement more-statement
-
+more-statement -> ''
 statement -> simple-statement
 statement -> structured-statement
-
-simple-statement -> ''
 simple-statement -> assignment-statement
-simple-statement -> procedure-statement
 simple-statement -> IO-statement
-
+simple-statement -> ''
 assignment-statement -> identifier := expression
-procedure-statement -> identifier opt-actual-parameter-list
-
-opt-actual-parameter-list -> ( actual-parameter more-actual-parameter )
-more-actual-parameter -> ''
-more-actual-parameter -> , actual-parameter
-
-actual-parameter -> expression
-actual-parameter -> identifier
-
 IO-statement -> writeln-statement
 IO-statement -> readln-statement
-
 writeln-statement -> writeln ( opt-element-list )
-
-opt-element-list -> ''
 opt-element-list -> element-list
-
+opt-element-list -> ''
 element-list -> element more-element
-more-element -> ''
 more-element -> , element more-element
-
+more-element -> ''
 element -> number
 element -> string
-element -> constant'
 element -> identifier
-
 readln-statement -> readln opt-identifier-list
 opt-identifier-list -> ''
 opt-identifier-list -> ( identifier-list )
-
 structured-statement -> compound-statement
 structured-statement -> repetitive-statement
 structured-statement -> conditional-statement
-
 compound-statement -> begin statement-sequence end .
-
 repetitive-statement -> while-statement
 repetitive-statement -> repeat-stateexpressionment
 repetitive-statement -> for-statement
-
 while-statement -> while expression do statement
 repeat-statement -> repeat statement-sequence until expression
-
 for-statement -> for identifier := expression to-downto expression do statement
 to-downto -> to
 to-downto -> downto
-
 conditional-statement -> if expression then statement opt-else
-opt-else -> ''
 opt-else -> else statement
-
-constant' -> opt-sign id-number
-constant' -> string
-
-id-number -> identifier
-id-number -> number
-
-opt-sign -> ''
+opt-else -> ''
+expression -> simple-expression opt-rel-expression
+opt-rel-expression -> relational-operator simple-expression
+opt-rel-expression -> ''
+simple-expression -> opt-sign term more-add-term
 opt-sign -> +
 opt-sign -> -
-
-expression -> simple-expression opt-rel-expression
-opt-rel-expression -> ''
-opt-rel-expression -> relational-operator simple-expression
-
-simple-expression -> opt-sign term more-add-term
-more-add-term -> ''
+opt-sign -> ''
 more-add-term -> addition-operator term more-add-term
-
+more-add-term -> ''
 term -> factor more-mult-term
-more-mult-term -> ''
 more-mult-term -> multiplication-operator factor more-mult-term
-
+more-mult-term -> ''
 factor -> identifier
 factor -> number
 factor -> string
-factor -> constant'
 factor -> ( expression )
 factor -> not factor
-
 relational-operator -> =
 relational-operator -> <>
 relational-operator -> <
 relational-operator -> <=
 relational-operator -> >
 relational-operator -> >=
-
 addition-operator -> +
 addition-operator -> -
 addition-operator -> or
-
 multiplication-operator -> *
 multiplication-operator -> /
 multiplication-operator -> div
