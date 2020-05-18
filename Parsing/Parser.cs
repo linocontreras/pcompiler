@@ -131,6 +131,7 @@ namespace Parsing
                         case Actions.Shift:
                             this.symbols.Push(symbol);
                             this.stack.Push(action.Item2);
+                            this.lexer.GetNextToken();
                             break;
 
                         case Actions.Reduce:
