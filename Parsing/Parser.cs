@@ -22,6 +22,11 @@ namespace Parsing
             this.lexer = lexer;
             this.SetUpProductions();
             this.SetUpActions();
+            this.SetUpGoTos();
+        }
+
+        private void SetUpGoTos() {
+            
         }
 
         private void SetUpActions() {
@@ -134,8 +139,21 @@ namespace Parsing
             this.actions[(41, SymbolType.End)] = (Actions.Reduce, 50);
             this.actions[(41, SymbolType.Until)] = (Actions.Reduce, 50);
             this.actions[(41, SymbolType.Else)] = (Actions.Reduce, 50);
-
-
+            this.actions[(42, SymbolType.SemiColon)] = (Actions.Reduce, 51);
+            this.actions[(42, SymbolType.End)] = (Actions.Reduce, 51);
+            this.actions[(42, SymbolType.Until)] = (Actions.Reduce, 51);
+            this.actions[(42, SymbolType.Else)] = (Actions.Reduce, 51);
+            this.actions[(43, SymbolType.SemiColon)] = (Actions.Reduce, 52);
+            this.actions[(43, SymbolType.End)] = (Actions.Reduce, 52);
+            this.actions[(43, SymbolType.Until)] = (Actions.Reduce, 52);
+            this.actions[(43, SymbolType.Else)] = (Actions.Reduce, 52);
+            this.actions[(44, SymbolType.Identifier)] = (Actions.Reduce, 66);
+            this.actions[(44, SymbolType.LParen)] = (Actions.Reduce, 66);
+            this.actions[(44, SymbolType.String)] = (Actions.Reduce, 66);
+            this.actions[(44, SymbolType.AddOperator)] = (Actions.Shift, 68);
+            this.actions[(44, SymbolType.Not)] = (Actions.Reduce, 66);
+            this.actions[(44, SymbolType.Integer)] = (Actions.Reduce, 66);
+            this.actions[(44, SymbolType.Real)] = (Actions.Reduce, 66);
 
         }
 
@@ -143,77 +161,82 @@ namespace Parsing
             this.productions[0] = 1;
             this.productions[1] = 4;
             this.productions[2] = 3;
-            this.productions[3] = 4;
+            this.productions[3] = 3;
             this.productions[4] = 0;
             this.productions[5] = 1;
             this.productions[6] = 3;
             this.productions[7] = 4;
             this.productions[8] = 0;
             this.productions[9] = 3;
-            this.productions[10] = 0;
-            this.productions[11] = 4;
-            this.productions[12] = 0;
-            this.productions[13] = 3;
-            this.productions[14] = 0;
-            this.productions[15] = 3;
-            this.productions[16] = 4;
-            this.productions[17] = 2;
-            this.productions[18] = 3;
-            this.productions[19] = 0;
+            this.productions[10] = 1;
+            this.productions[11] = 1;
+            this.productions[12] = 3;
+            this.productions[13] = 0;
+            this.productions[14] = 4;
+            this.productions[15] = 0;
+            this.productions[16] = 3;
+            this.productions[17] = 0;
+            this.productions[18] = 2;
+            this.productions[19] = 3;
             this.productions[20] = 2;
             this.productions[21] = 3;
             this.productions[22] = 0;
-            this.productions[23] = 1;
-            this.productions[24] = 1;
-            this.productions[25] = 1;
+            this.productions[23] = 2;
+            this.productions[24] = 3;
+            this.productions[25] = 0;
             this.productions[26] = 1;
-            this.productions[27] = 0;
-            this.productions[28] = 3;
+            this.productions[27] = 1;
+            this.productions[28] = 1;
             this.productions[29] = 1;
-            this.productions[30] = 1;
-            this.productions[31] = 4;
+            this.productions[30] = 0;
+            this.productions[31] = 3;
             this.productions[32] = 1;
-            this.productions[33] = 0;
-            this.productions[34] = 2;
-            this.productions[35] = 3;
+            this.productions[33] = 1;
+            this.productions[34] = 4;
+            this.productions[35] = 1;
             this.productions[36] = 0;
-            this.productions[37] = 1;
-            this.productions[38] = 1;
-            this.productions[39] = 1;
-            this.productions[40] = 2;
-            this.productions[41] = 0;
-            this.productions[42] = 3;
-            this.productions[43] = 1;
-            this.productions[44] = 1;
-            this.productions[45] = 1;
-            this.productions[46] = 4;
+            this.productions[37] = 2;
+            this.productions[38] = 3;
+            this.productions[39] = 0;
+            this.productions[40] = 1;
+            this.productions[41] = 1;
+            this.productions[42] = 1;
+            this.productions[43] = 2;
+            this.productions[44] = 0;
+            this.productions[45] = 3;
+            this.productions[46] = 1;
             this.productions[47] = 1;
             this.productions[48] = 1;
-            this.productions[49] = 1;
-            this.productions[50] = 4;
-            this.productions[51] = 4;
-            this.productions[52] = 8;
-            this.productions[53] = 1;
-            this.productions[54] = 1;
-            this.productions[55] = 5;
-            this.productions[56] = 2;
-            this.productions[57] = 0;
-            this.productions[58] = 2;
+            this.productions[49] = 4;
+            this.productions[50] = 1;
+            this.productions[51] = 1;
+            this.productions[52] = 1;
+            this.productions[53] = 4;
+            this.productions[54] = 4;
+            this.productions[55] = 8;
+            this.productions[56] = 1;
+            this.productions[57] = 1;
+            this.productions[58] = 5;
             this.productions[59] = 2;
             this.productions[60] = 0;
-            this.productions[61] = 3;
-            this.productions[62] = 1;
+            this.productions[61] = 2;
+            this.productions[62] = 2;
             this.productions[63] = 0;
             this.productions[64] = 3;
-            this.productions[65] = 0;
-            this.productions[66] = 2;
+            this.productions[65] = 1;
+            this.productions[66] = 0;
             this.productions[67] = 3;
             this.productions[68] = 0;
-            this.productions[69] = 1;
-            this.productions[70] = 1;
-            this.productions[71] = 1;
-            this.productions[72] = 3;
-            this.productions[73] = 2;
+            this.productions[69] = 2;
+            this.productions[70] = 3;
+            this.productions[71] = 0;
+            this.productions[72] = 1;
+            this.productions[73] = 1;
+            this.productions[74] = 1;
+            this.productions[75] = 3;
+            this.productions[76] = 2;
+            this.productions[77] = 1;
+            this.productions[78] = 1;
         }
 
         public bool Parse()
