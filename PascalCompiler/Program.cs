@@ -1,14 +1,13 @@
 ﻿using System;
-using System.Text;
 using System.IO;
+using Parsing;
 using Lexing;
-using Lexing.Tokens;
 
 namespace PascalCompiler
 {
     class Program
     {
-        static void Main(string[] args)
+        static int Main(string[] args)
         {
             TextReader textReader;
             if (args.Length == 0) {
@@ -19,13 +18,15 @@ namespace PascalCompiler
 
             Lexer lexer = new Lexer(textReader);
 
-            Symbol token;
+            Parser parser = new Parser(lexer);
 
-            do {
-                token = lexer.GetNextToken();
-                Console.WriteLine(token);
-            } while (!(token is TokenEOF));
-
+            try {
+                parser.Parse();
+                return 0;
+            } catch (Exception ex) {
+                Console.WriteLine(ex.Message);
+                return 1;
+            }
         }
     }
 }

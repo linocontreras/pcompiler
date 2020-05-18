@@ -1,10 +1,10 @@
-using System;
-using System.Collections.Generic;
-using Lexing;
-using Lexing.Tokens;
-
-namespace Syntaxer
+namespace Parsing
 {
+    using System;
+    using System.Collections.Generic;
+    using Lexing;
+    using Lexing.Tokens;
+
     enum Actions { Shift, Reduce, Accept }
     public class Parser
     {
@@ -20,6 +20,25 @@ namespace Syntaxer
         public Parser(Lexer lexer)
         {
             this.lexer = lexer;
+            this.SetUpProductions();
+            this.SetUpActions();
+        }
+
+        private void SetUpActions() {
+            this.actions[(0, SymbolType.Program)] = (Actions.Shift, 3);
+            this.actions[(1, SymbolType.EOF)] = (Actions.Accept, 0);
+            this.actions[(2, SymbolType.SemiColon)] = (Actions.Shift, 4);
+            this.actions[(3, SymbolType.Identifier)] = (Actions.Shift, 5);
+            this.actions[(4, SymbolType.Dot)] = (Actions.Reduce, 8);
+            this.actions[(4, SymbolType.Constant)] = (Actions.Shift, 8);
+            this.actions[(4, SymbolType.Var)] = (Actions.Reduce, 8);
+            this.actions[(4, SymbolType.Begin)] = (Actions.Reduce, 8);
+            this.actions[(5, SymbolType.SemiColon)] = (Actions.Reduce, 4);
+            this.actions[(5, SymbolType.LParen)] = (Actions.Shift, 10);
+            this.actions[(6, SymbolType.Dot)] = (Actions.Shift, 11);
+            this.actions[(7, SymbolType.Var)] = (Actions.Shift, 13);
+            this.actions[(7, SymbolType.Begin)] = (Actions.Reduce, 12);
+
         }
 
         private void SetUpProductions() {
@@ -104,13 +123,13 @@ namespace Syntaxer
             while (true)
             {
                 int status = this.stack.Peek();
-                Lexing.Tokens.Symbol token = this.lexer.PeekToken();
-                if (actions.TryGetValue((status, token.Type), out var action))
+                Symbol symbol = this.lexer.PeekToken();
+                if (actions.TryGetValue((status, symbol.Type), out var action))
                 {
                     switch (action.Item1)
                     {
                         case Actions.Shift:
-                            this.symbols.Push(token);
+                            this.symbols.Push(symbol);
                             this.stack.Push(action.Item2);
                             break;
 
@@ -124,7 +143,7 @@ namespace Syntaxer
                 }
                 else
                 {
-                    throw new Exception("Syntax error. Unexpected " + token);
+                    throw new Exception($"({this.lexer.CurrentLine}, {this.lexer.CurrentCol}) Syntax error on line. Unexpected {symbol}");
                 }
             }
         }
@@ -135,11 +154,17 @@ namespace Syntaxer
 
             while (remove --> 0) {
                 this.stack.Pop();
+                this.symbols.Pop();
             }
-        }
 
-        private void GoTo(int state)
-        {
+            Production prod = new Production(production);
+            this.symbols.Push(prod);
+
+            if (this.goTos.TryGetValue((this.stack.Peek(), production), out int state)) {
+                this.stack.Push(state);
+            } else {
+                throw new Exception($"({this.lexer.CurrentLine}, {this.lexer.CurrentCol}) Syntax error on line. Unexpected {prod}");
+            }
 
         }
     }
