@@ -8,8 +8,7 @@ namespace Syntaxer
     enum Actions { Shift, Reduce, Accept }
     public class Parser
     {
-        private delegate void Action(int stack);
-        private Dictionary<(int, Type), (Actions, int)> actions = new Dictionary<(int, Type), (Actions, int)>();
+        private Dictionary<(int, SymbolType), (Actions, int)> actions = new Dictionary<(int, SymbolType), (Actions, int)>();
 
         private Dictionary<(int, Type), int> goTos = new Dictionary<(int, Type), int>();
         private Dictionary<int, int> productions = new Dictionary<int, int>();
@@ -29,7 +28,7 @@ namespace Syntaxer
             {
                 int status = this.stack.Peek();
                 Lexing.Tokens.Symbol token = this.lexer.PeekToken();
-                if (actions.TryGetValue((status, token), out var action))
+                if (actions.TryGetValue((status, token.Type), out var action))
                 {
                     switch (action.Item1)
                     {
@@ -65,12 +64,6 @@ namespace Syntaxer
         private void GoTo(int state)
         {
 
-        }
-    }
-
-    class SymbolComparer {
-        public bool Equals((int, Symbol) a, (int, Symbol) b) {
-            return a.Item1 == b.Item1 && b.Item2 is b.Item2.GetType();
         }
     }
 }

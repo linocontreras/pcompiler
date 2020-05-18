@@ -1,8 +1,8 @@
 namespace Lexing.Tokens {
-    public class TokenString : Token {
+    public class TokenString : Symbol {
         public string Value { get; private set; }
 
-        public TokenString(string value)
+        public TokenString(string value) : base(SymbolType.String)
         {
             this.Value = value;
         }

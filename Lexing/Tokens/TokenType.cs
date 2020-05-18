@@ -6,7 +6,7 @@ namespace Lexing.Tokens {
     }
     public class TokenType : Symbol {
         public TokenTypeEnum Value { get; private set; }
-        public TokenType(TokenTypeEnum tokenTypeEnum) {
+        public TokenType(TokenTypeEnum tokenTypeEnum) : base(SymbolType.Type) {
             this.Value = tokenTypeEnum;
         }
         public override string ToString()

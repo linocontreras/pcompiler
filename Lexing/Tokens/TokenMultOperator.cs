@@ -6,7 +6,7 @@ namespace Lexing.Tokens {
     }
     public class TokenMultOperator : Symbol {
         public TokenMultOperatorEnum Value { get; private set; }
-        public TokenMultOperator(TokenMultOperatorEnum tokenTypeEnum) {
+        public TokenMultOperator(TokenMultOperatorEnum tokenTypeEnum) : base(SymbolType.MultOperator) {
             this.Value = tokenTypeEnum;
         }
         public override string ToString()

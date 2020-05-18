@@ -81,8 +81,8 @@ namespace Lexing
       this.oneChars.Add('.', new TokenPunctuation(SymbolType.Dot));
       this.oneChars.Add(',', new TokenPunctuation(SymbolType.Comma));
 
-      this.oneChars.Add('(', new TokenLParen());
-      this.oneChars.Add(')', new TokenRParen());
+      this.oneChars.Add('(', new TokenPunctuation(SymbolType.LParen));
+      this.oneChars.Add(')', new TokenPunctuation(SymbolType.RParen));
 
       this.oneChars.Add('=', new TokenRelational(TokenRelationalEnum.EQ));
 

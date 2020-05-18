@@ -7,7 +7,7 @@ namespace Lexing.Tokens {
     public class TokenRelational : Symbol {
         public TokenRelationalEnum Value { get; private set; }
 
-        public TokenRelational(TokenRelationalEnum tokenRelationalEnum) {
+        public TokenRelational(TokenRelationalEnum tokenRelationalEnum) : base(SymbolType.Relational) {
             this.Value = tokenRelationalEnum;
         }
 
