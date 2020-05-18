@@ -1,8 +1,8 @@
 namespace Lexing.Tokens {
-    public class TokenInteger : Token {
+    public class TokenInteger : Symbol {
         public int Value { get; private set; }
 
-        public TokenInteger(int value)
+        public TokenInteger(int value) : base(SymbolType.Integer)
         {
             this.Value = value;
         }

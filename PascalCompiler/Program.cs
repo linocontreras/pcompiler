@@ -19,7 +19,7 @@ namespace PascalCompiler
 
             Lexer lexer = new Lexer(textReader);
 
-            Token token;
+            Symbol token;
 
             do {
                 token = lexer.GetNextToken();

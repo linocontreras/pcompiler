@@ -10,9 +10,9 @@ namespace Lexing
   {
     private TextReader textReader;
 
-    private Dictionary<string, Token> keywords;
+    private Dictionary<string, Symbol> keywords;
 
-    private Dictionary<char, Token> oneChars;
+    private Dictionary<char, Symbol> oneChars;
 
     public int CurrentLine { get; private set; } = 1;
 
@@ -20,9 +20,9 @@ namespace Lexing
 
     private int peek;
 
-    private Token peekToken;
+    private Symbol peekToken;
 
-    public Token PeekToken() {
+    public Symbol PeekToken() {
       if (peekToken == null) {
         this.peekToken = this.GetNextToken();
       }
@@ -34,33 +34,34 @@ namespace Lexing
       this.textReader = textReader;
       this.peek = this.textReader.Peek();
 
-      this.keywords = new Dictionary<string, Token>();
-      this.oneChars = new Dictionary<char, Token>();
+      this.keywords = new Dictionary<string, Symbol>();
+      this.oneChars = new Dictionary<char, Symbol>();
       this.SetUpKeywords();
       this.SetUpOneChar();
     }
 
     private void SetUpKeywords()
     {
-      this.keywords.Add("program", new TokenProgram());
-      this.keywords.Add("constant", new TokenConstant());
-      this.keywords.Add("var", new TokenVar());
-      this.keywords.Add("begin", new TokenBegin());
-      this.keywords.Add("end", new TokenEnd());
-      this.keywords.Add("function", new TokenFunction());
-      this.keywords.Add("while", new TokenWhile());
-      this.keywords.Add("do", new TokenDo());
-      this.keywords.Add("repeat", new TokenRepeat());
-      this.keywords.Add("until", new TokenUntil());
-      this.keywords.Add("for", new TokenFor());
-      this.keywords.Add("to", new TokenTo());
-      this.keywords.Add("downto", new TokenDownTo());
-      this.keywords.Add("if", new TokenIf());
-      this.keywords.Add("not", new TokenNot());
-      this.keywords.Add("then", new TokenThen());
-      this.keywords.Add("else", new TokenElse());
-      this.keywords.Add("writeln", new TokenWriteLn());
-      this.keywords.Add("readln", new TokenReadLn());
+      this.keywords.Add("program", new TokenKeyword(SymbolType.Program));
+      this.keywords.Add("constant", new TokenKeyword(SymbolType.Constant));
+      this.keywords.Add("var", new TokenKeyword(SymbolType.Var));
+      this.keywords.Add("begin", new TokenKeyword(SymbolType.Begin));
+      this.keywords.Add("end", new TokenKeyword(SymbolType.End));
+      this.keywords.Add("function", new TokenKeyword(SymbolType.Function));
+      this.keywords.Add("while", new TokenKeyword(SymbolType.While));
+      this.keywords.Add("do", new TokenKeyword(SymbolType.Do));
+      this.keywords.Add("repeat", new TokenKeyword(SymbolType.Repeat));
+      this.keywords.Add("until", new TokenKeyword(SymbolType.Until));
+      this.keywords.Add("for", new TokenKeyword(SymbolType.For));
+      this.keywords.Add("to", new TokenKeyword(SymbolType.To));
+      this.keywords.Add("downto", new TokenKeyword(SymbolType.DownTo));
+      this.keywords.Add("if", new TokenKeyword(SymbolType.If));
+      this.keywords.Add("not", new TokenKeyword(SymbolType.Not));
+      this.keywords.Add("then", new TokenKeyword(SymbolType.Then));
+      this.keywords.Add("else", new TokenKeyword(SymbolType.Else));
+      this.keywords.Add("writeln", new TokenKeyword(SymbolType.WriteLn));
+      this.keywords.Add("readln", new TokenKeyword(SymbolType.ReadLn));
+      this.keywords.Add("procedure", new TokenKeyword(SymbolType.Procedure));
 
       this.keywords.Add("boolean", new TokenType(TokenTypeEnum.Boolean));
       this.keywords.Add("integer", new TokenType(TokenTypeEnum.Integer));
@@ -72,15 +73,13 @@ namespace Lexing
       this.keywords.Add("div", new TokenMultOperator(TokenMultOperatorEnum.Div));
       this.keywords.Add("mod", new TokenMultOperator(TokenMultOperatorEnum.Mod));
       this.keywords.Add("and", new TokenMultOperator(TokenMultOperatorEnum.And));
-
-      this.keywords.Add("procedure", new TokenProcedure());
     }
 
     private void SetUpOneChar()
     {
-      this.oneChars.Add(';', new TokenSemicolon());
-      this.oneChars.Add('.', new TokenDot());
-      this.oneChars.Add(',', new TokenComma());
+      this.oneChars.Add(';', new TokenPunctuation(SymbolType.SemiColon));
+      this.oneChars.Add('.', new TokenPunctuation(SymbolType.Dot));
+      this.oneChars.Add(',', new TokenPunctuation(SymbolType.Comma));
 
       this.oneChars.Add('(', new TokenLParen());
       this.oneChars.Add(')', new TokenRParen());
@@ -94,10 +93,10 @@ namespace Lexing
       this.oneChars.Add('/', new TokenMultOperator(TokenMultOperatorEnum.Slash));
     }
 
-    public Token GetNextToken()
+    public Symbol GetNextToken()
     {
       if (this.peekToken != null) {
-        Token result = this.peekToken;
+        Symbol result = this.peekToken;
         this.peekToken = null;
         return result;
       }
@@ -109,9 +108,9 @@ namespace Lexing
         return new TokenEOF();
       }
 
-      this.oneChars.TryGetValue((char)this.peek, out Token oneChar);
+      this.oneChars.TryGetValue((char)this.peek, out Symbol oneChar);
 
-      if (oneChar is Token)
+      if (oneChar is Symbol)
       {
         this.Read();
         return oneChar;
@@ -125,7 +124,7 @@ namespace Lexing
           return new TokenAssign();
         }
 
-        return new TokenColon();
+        return new TokenPunctuation(SymbolType.Colon);
       }
 
       if (this.peek == '<')
@@ -189,7 +188,7 @@ namespace Lexing
           sb.Append(char.ToLower((char)this.Read()));
         } while (char.IsLetterOrDigit((char)this.peek));
 
-        this.keywords.TryGetValue(sb.ToString(), out Token keyword);
+        this.keywords.TryGetValue(sb.ToString(), out Symbol keyword);
         return keyword ?? new TokenIdentifier(sb.ToString());
       }
 

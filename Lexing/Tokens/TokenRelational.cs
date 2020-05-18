@@ -4,7 +4,7 @@ namespace Lexing.Tokens {
     public enum TokenRelationalEnum {
         EQ, NE, LT, LE, GT, GE
     }
-    public class TokenRelational : Token {
+    public class TokenRelational : Symbol {
         public TokenRelationalEnum Value { get; private set; }
 
         public TokenRelational(TokenRelationalEnum tokenRelationalEnum) {

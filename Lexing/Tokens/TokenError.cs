@@ -1,11 +1,11 @@
 
 namespace Lexing.Tokens
 {
-    public class TokenError : Token
+    public class TokenError : Symbol
     {
         public string Value { get; private set; }
 
-        public TokenError(string value)
+        public TokenError(string value) : base(SymbolType.Error)
         {
             this.Value = value;
         }

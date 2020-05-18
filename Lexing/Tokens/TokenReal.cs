@@ -1,5 +1,5 @@
 namespace Lexing.Tokens {
-    public class TokenReal : Token {
+    public class TokenReal : Symbol {
         public double Value { get; private set; }
 
         public TokenReal(int integer, int fraction, int exp)

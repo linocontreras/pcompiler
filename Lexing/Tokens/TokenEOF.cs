@@ -1,16 +1,11 @@
 
 namespace Lexing.Tokens
 {
-    public class TokenEOF : Token
+    public class TokenEOF : Symbol
     {
-        public TokenEOF()
+        public TokenEOF() : base(SymbolType.Eof)
         {
 
-        }
-
-        public override string ToString()
-        {
-            return $"[{nameof(TokenEOF)}]";
         }
     }
 }

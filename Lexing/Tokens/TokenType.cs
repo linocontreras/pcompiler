@@ -4,7 +4,7 @@ namespace Lexing.Tokens {
     public enum TokenTypeEnum {
         Integer, Real, Boolean, String
     }
-    public class TokenType : Token {
+    public class TokenType : Symbol {
         public TokenTypeEnum Value { get; private set; }
         public TokenType(TokenTypeEnum tokenTypeEnum) {
             this.Value = tokenTypeEnum;

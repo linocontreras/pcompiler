@@ -4,7 +4,7 @@ namespace Lexing.Tokens {
     public enum TokenMultOperatorEnum {
         Star, Slash, Div, Mod, And
     }
-    public class TokenMultOperator : Token {
+    public class TokenMultOperator : Symbol {
         public TokenMultOperatorEnum Value { get; private set; }
         public TokenMultOperator(TokenMultOperatorEnum tokenTypeEnum) {
             this.Value = tokenTypeEnum;
