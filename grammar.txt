@@ -1,20 +1,20 @@
 programa' -> programa
-programa -> program-heading Semicolon program-block Dot
+programa -> program-heading SemiColon program-block Dot
 program-heading -> Program Identifier opt-program-parameters
 opt-program-parameters -> LParen program-parameters RParen
 opt-program-parameters -> ''
 program-parameters -> identifier-list
 program-block -> constant-declaration-part variable-declaration-part statement-part
-constant-declaration-part -> Constant constant-definition Semicolon more-constant-definition
+constant-declaration-part -> Constant constant-definition SemiColon more-constant-definition
 constant-declaration-part -> ''
 constant-definition -> Identifier Assign constant-values
 constant-values -> number
 constant-values -> String
-more-constant-definition -> constant-definition Semicolon more-constant-definition
+more-constant-definition -> constant-definition SemiColon more-constant-definition
 more-constant-definition -> ''
-variable-declaration-part -> Var variable-declaration Semicolon more-variable-declaration
+variable-declaration-part -> Var variable-declaration SemiColon more-variable-declaration
 variable-declaration-part -> ''
-more-variable-declaration -> variable-declaration Semicolon more-variable-declaration
+more-variable-declaration -> variable-declaration SemiColon more-variable-declaration
 more-variable-declaration -> ''
 variable-declaration -> identifier-list Colon Type
 statement-part -> Begin statement-sequence End Dot
@@ -22,7 +22,7 @@ identifier-list -> Identifier more-identifier
 more-identifier -> Comma Identifier more-identifier
 more-identifier -> ''
 statement-sequence -> statement more-statement
-more-statement -> Semicolon statement more-statement
+more-statement -> SemiColon statement more-statement
 more-statement -> ''
 statement -> simple-statement
 statement -> structured-statement
