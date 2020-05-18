@@ -1,3 +1,4 @@
+programa' -> programa
 programa -> program-heading ; program-block .
 program-heading -> program identifier opt-program-parameters
 opt-program-parameters -> ( program-parameters )
@@ -14,10 +15,6 @@ more-variable-declaration -> variable-declaration ; more-variable-declaration
 more-variable-declaration -> ''
 variable-declaration -> identifier-list : type
 statement-part -> begin statement-sequence end .
-type -> integer
-type -> real
-type -> boolean
-type -> string
 identifier-list -> identifier more-identifier
 more-identifier -> , identifier more-identifier
 more-identifier -> ''
@@ -63,8 +60,7 @@ expression -> simple-expression opt-rel-expression
 opt-rel-expression -> relational-operator simple-expression
 opt-rel-expression -> ''
 simple-expression -> opt-sign term more-add-term
-opt-sign -> +
-opt-sign -> -
+opt-sign -> addition-operator
 opt-sign -> ''
 more-add-term -> addition-operator term more-add-term
 more-add-term -> ''
@@ -76,17 +72,3 @@ factor -> number
 factor -> string
 factor -> ( expression )
 factor -> not factor
-relational-operator -> =
-relational-operator -> <>
-relational-operator -> <
-relational-operator -> <=
-relational-operator -> >
-relational-operator -> >=
-addition-operator -> +
-addition-operator -> -
-addition-operator -> or
-multiplication-operator -> *
-multiplication-operator -> /
-multiplication-operator -> div
-multiplication-operator -> mod
-multiplication-operator -> and

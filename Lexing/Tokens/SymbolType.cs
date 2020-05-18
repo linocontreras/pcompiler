@@ -22,6 +22,7 @@ public enum SymbolType
     MultOperator,
     Not,
     Procedure,
+    Production,
     Program,
     ReadLn,
     Real,
