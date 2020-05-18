@@ -166,7 +166,6 @@ namespace Parsing
             } else {
                 throw new Exception($"Syntax error near line {this.lexer.CurrentLine}. Unexpected {prod}");
             }
-
         }
     }
 }
