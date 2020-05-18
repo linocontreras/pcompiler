@@ -37,8 +37,27 @@ namespace Parsing
             this.actions[(5, SymbolType.LParen)] = (Actions.Shift, 10);
             this.actions[(6, SymbolType.Dot)] = (Actions.Shift, 11);
             this.actions[(7, SymbolType.Var)] = (Actions.Shift, 13);
-            this.actions[(7, SymbolType.Begin)] = (Actions.Reduce, 12);
-
+            this.actions[(7, SymbolType.Begin)] = (Actions.Reduce, 15);
+            this.actions[(8, SymbolType.Identifier)] = (Actions.Shift, 15);
+            this.actions[(9, SymbolType.SemiColon)] = (Actions.Reduce, 2);
+            this.actions[(10, SymbolType.Identifier)] = (Actions.Shift, 18);
+            this.actions[(11, SymbolType.EOF)] = (Actions.Reduce, 1);
+            this.actions[(12, SymbolType.Begin)] = (Actions.Shift, 20);
+            this.actions[(13, SymbolType.Identifier)] = (Actions.Shift, 18);
+            this.actions[(14, SymbolType.SemiColon)] = (Actions.Shift, 23);
+            this.actions[(15, SymbolType.Assign)] = (Actions.Shift, 24);
+            this.actions[(16, SymbolType.RParen)] = (Actions.Shift, 25);
+            this.actions[(17, SymbolType.RParen)] = (Actions.Reduce, 5);
+            this.actions[(18, SymbolType.RParen)] = (Actions.Reduce, 22);
+            this.actions[(18, SymbolType.Colon)] = (Actions.Reduce, 22);
+            this.actions[(18, SymbolType.Comma)] = (Actions.Shift, 27);
+            this.actions[(19, SymbolType.Dot)] = (Actions.Reduce, 6);
+            this.actions[(20, SymbolType.SemiColon)] = (Actions.Reduce, 30);
+            this.actions[(20, SymbolType.Identifier)] = (Actions.Shift, 27);
+            this.actions[(20, SymbolType.Begin)] = (Actions.Shift, 40);
+            this.actions[(20, SymbolType.End)] = (Actions.Reduce, 30);
+            this.actions[(20, SymbolType.WriteLn)] = (Actions.Shift, 45);
+            this.actions[(20, SymbolType.ReadLn)] = (Actions.Shift, 46);
         }
 
         private void SetUpProductions() {
