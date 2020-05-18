@@ -144,7 +144,7 @@ namespace Parsing
                 }
                 else
                 {
-                    throw new Exception($"({this.lexer.CurrentLine}, {this.lexer.CurrentCol}) Syntax error on line. Unexpected {symbol}");
+                    throw new Exception($"Syntax error near line {this.lexer.CurrentLine}. Unexpected {symbol}");
                 }
             }
         }
@@ -164,7 +164,7 @@ namespace Parsing
             if (this.goTos.TryGetValue((this.stack.Peek(), production), out int state)) {
                 this.stack.Push(state);
             } else {
-                throw new Exception($"({this.lexer.CurrentLine}, {this.lexer.CurrentCol}) Syntax error on line. Unexpected {prod}");
+                throw new Exception($"Syntax error near line {this.lexer.CurrentLine}. Unexpected {prod}");
             }
 
         }
